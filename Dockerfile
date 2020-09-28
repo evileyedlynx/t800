@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-LABEL "Test_Boxfuse_compilation"
+LABEL description=Test_Boxfuse_compilation
 RUN apt update -y
 && apt install default-jdk -y
 && apt install maven -y
