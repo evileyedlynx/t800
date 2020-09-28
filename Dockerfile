@@ -11,4 +11,4 @@ RUN cp boxfuse-sample-java-war-hello/target/*.war /var/lib/tomcat8/webapps/
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["./usr/share/tomcat8/bin/catalina.sh", "run"]
