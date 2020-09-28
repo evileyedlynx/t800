@@ -8,5 +8,4 @@ RUN apt install git -y
 RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
 RUN mvn package -f /boxfuse-sample-java-war-hello/pom.xml
 RUN cp boxfuse-sample-java-war-hello/target/*.war /var/lib/tomcat8/webapps/
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-&& apt purge git
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
