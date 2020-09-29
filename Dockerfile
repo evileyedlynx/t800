@@ -6,4 +6,5 @@ RUN apt install p7zip-full
 RUN 7z x home/webapp.7z
 RUN cp home/app /opt/webapp
 RUN pip install -qr Flask Jinja2 Werkzeug distribute wsgiref
-CMD ["app.py"]
+EXPOSE 5000
+CMD ["/opt/webapp/app.py"]
