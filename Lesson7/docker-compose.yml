@@ -6,7 +6,7 @@ services:
 #    links: 
 #      - maven
     ports: 
-      8080:8080
+      - "8080:8080"
     volumes:
 #      - shared_folder: /home/user/
 #      - /home/ubuntu/target:/var/lib/tomcat8/webapps
