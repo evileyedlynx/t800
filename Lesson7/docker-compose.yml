@@ -11,11 +11,9 @@ services:
 #      - shared_folder: /home/user/
 #      - /home/ubuntu/target:/var/lib/tomcat8/webapps
       - /home/ubuntu/target/:/opt/tomcat/webapps/
-    
+    command: /opt/tomcat/bin/catalina.sh run
     depends_on: 
       - maven
-    
-      
   
   maven:
     image: maven:3.3-jdk-8
