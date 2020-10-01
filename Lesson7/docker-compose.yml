@@ -1,0 +1,28 @@
+version: '2'
+services:
+  prod:
+    image: davidcaste/alpine-tomcat:tomcat8
+#    build: prod:latest
+#    links: 
+#      - maven
+    ports: 
+      8080:8080
+    volumes:
+#      - shared_folder: /home/user/
+#      - /home/ubuntu/target:/var/lib/tomcat8/webapps
+      - /home/ubuntu/target/:/opt/tomcat/webapps/
+    
+    depends_on: 
+      - maven
+    
+      
+  
+  maven:
+    image: maven:3.3-jdk-8
+    volumes: 
+      - /home/ubuntu/:/home/user/
+    working_dir: /home/user/
+    command: mvn package
+    
+#volumes: 
+#  shared_folder:
