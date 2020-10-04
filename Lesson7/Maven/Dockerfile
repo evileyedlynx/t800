@@ -1,4 +1,4 @@
-FROM: maven:3.3-jdk-8
+FROM maven:3.3-jdk-8
 RUN apt update
 RUN apt install git
 RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
