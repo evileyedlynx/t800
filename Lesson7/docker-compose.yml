@@ -20,8 +20,8 @@ services:
     build: Maven
     volumes: 
       - /home/ubuntu/:/home/user/
-    working_dir: /home/user/
-    command: mvn package
+#    working_dir: /home/user/
+#    command: mvn package
     
 #volumes: 
 #  shared_folder:
