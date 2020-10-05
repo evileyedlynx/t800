@@ -15,7 +15,7 @@
 - name: start Maven container
   hosts: mav
   become: yes
-    tasks:
+  tasks:
   - name: start Maven container
     docker_contaier:
       name: mav
