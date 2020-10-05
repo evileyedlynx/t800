@@ -17,7 +17,7 @@
   become: yes
   tasks:
   - name: start Maven container
-    docker_contaier:
+    docker_container:
       name: mav
       image: maven:3.3-jdk-8
       volumes: 
