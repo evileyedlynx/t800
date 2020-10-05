@@ -6,8 +6,7 @@
   tasks:
   - name: Install required apt system packages
     apt: name={{ item }} state=latest update_cache=yes
-    loop: [ 'python3-pip', 'python3-setuptools', 'python-pip', 'python-setuptools', 'docker.io', 'rsync' ]
-        
+    loop: [ 'python3-pip', 'python3-setuptools', 'python-pip', 'python-setuptools', 'docker.io', 'rsync' ]     
   - name: Install Docker Module for Python
     pip:
       name: docker
