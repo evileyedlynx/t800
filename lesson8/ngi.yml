@@ -1,6 +1,7 @@
 ---
 - name: install nginx
   hosts: mav
+  become: yes
   tasks: 
   - name: install nginx
     apt: 
