@@ -1,0 +1,44 @@
+---
+- name: install required system packages
+  hosts: all
+  become: yes
+  
+  tasks:
+  - name: Install required apt system packages
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'python3-pip', 'python3-setuptools', 'python-pip', 'python-setuptools', 'docker.io', 'rsync' ]
+        
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+
+- name: start Maven container
+  hosts: mav
+  become: yes
+    tasks:
+  - name: start Maven container
+    docker_contaier:
+      name: mav
+      image: maven:3.3-jdk-8
+      volumes: 
+      - /home/ubuntu/:/home/user/
+      command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/rep
+      command: cp -r /home/rep/* /home/user
+      command: mvn package -f /home/user/pom.xml
+  - name: copy artefact to Tomcat host
+    shell: rsync -avz /home/ubuntu/target/*.war ubuntu@172.31.13.196:/home/ubuntu/
+
+- name: start Tomcat
+  hosts: tom
+  become: yes
+  tasks:
+  - name: start Tomcat container
+    docker_container:
+      name: 'tomcat'
+      image: davidcaste/alpine-tomcat:tomcat8
+      volumes: 
+      - /home/ubuntu/:/opt/tomcat/webapps/
+      ports:
+      - "8080:8080"
+      command: /opt/tomcat/bin/catalina.sh run
+---
