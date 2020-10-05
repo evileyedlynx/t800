@@ -21,7 +21,8 @@ services:
     volumes: 
       - /home/ubuntu/:/home/user/
     working_dir: /home/user/
-    command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/user
+    command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/rep
+    command: cp -r /home/rep/* /home/user
     command: mvn package
     
 #volumes: 
