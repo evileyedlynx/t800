@@ -28,7 +28,7 @@
       command: mvn package -f /home/user/pom.xml
   - name: copy artefact from maven
     fetch: 
-      src: {{ item }}
+      src: "{{ item }}"
       dest: /home/ubuntu/
     with_fileglob:
       - "/home/ubuntu/repo/*.war"
@@ -39,10 +39,10 @@
   tasks:
   - name: copy artefact to Tomcat
     copy:
-      src: /home/ubuntu/*.war
+      src: "{{ item }}"
       dest: /home/ubuntu/
     with_fileglob:
-      - "/home/ubuntu/repo/*.war"
+      - "/home/ubuntu/*.war"
   - name: start Tomcat container
     docker_container:
       name: 'tomcat'
