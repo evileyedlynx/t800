@@ -31,6 +31,7 @@
 #      src: "{{ item }}"
       src: /home/ubuntu/repo/target/hello-1.0.war
       dest: /home/ubuntu/
+      flat: yes
 #    with_fileglob:
 #      - "/home/ubuntu/repo/*.war"
 
