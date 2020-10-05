@@ -16,12 +16,13 @@ services:
       - maven
   
   maven:
-#    image: maven:3.3-jdk-8
-    build: Maven
+    image: maven:3.3-jdk-8
+#    build: Maven
     volumes: 
       - /home/ubuntu/:/home/user/
-#    working_dir: /home/user/
-#    command: mvn package
+    working_dir: /home/user/
+    command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/user
+    command: mvn package
     
 #volumes: 
 #  shared_folder:
