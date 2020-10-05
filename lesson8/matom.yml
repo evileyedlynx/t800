@@ -15,17 +15,19 @@
   hosts: mav
   become: yes
   tasks:
+  - name: git clone to machine
+    git:
+      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      dest: /home/ubuntu/repo/
   - name: start Maven container
     docker_container:
       name: mav
       image: maven:3.3-jdk-8
       volumes: 
-      - /home/ubuntu/:/home/user/
-      command: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git /home/rep
-      command: cp -r /home/rep/* /home/user
+      - /home/ubuntu/repo/:/home/user/
       command: mvn package -f /home/user/pom.xml
-  - name: copy artefact to Tomcat host
-    shell: rsync -avz /home/ubuntu/target/*.war ubuntu@172.31.13.196:/home/ubuntu/
+  - name: copy artefact from to Tomcat host
+    shell: rsync -avz /home/ubuntu/repo/target/*.war ubuntu@172.31.18.143:/home/ubuntu/
 
 - name: start Tomcat
   hosts: tom
