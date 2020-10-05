@@ -26,13 +26,19 @@
       volumes: 
       - /home/ubuntu/repo/:/home/user/
       command: mvn package -f /home/user/pom.xml
-  - name: copy artefact from to Tomcat host
-    shell: rsync -avz /home/ubuntu/repo/target/*.war ubuntu@172.31.18.143:/home/ubuntu/
+  - name: copy artefact from maven
+    fetch: 
+      src: /home/ubuntu/repo/target/*.war
+      dest: /home/ubuntu/
 
-- name: start Tomcat
+- name: Launch Tomcat
   hosts: tom
   become: yes
   tasks:
+  - name: copy artefact to Tomcat
+    copy:
+      src: /home/ubuntu/*.war
+      dest: /home/ubuntu/
   - name: start Tomcat container
     docker_container:
       name: 'tomcat'
